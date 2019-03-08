@@ -49,6 +49,7 @@
 事例：
 
 1. 懒汉模式：调用取得实例方法的时候才会实例化对象。
+```
 
 /\*\*
 
@@ -77,9 +78,9 @@ public class LazySingleton {
     }
 
 }
-
+```
 1. 饿汉模式：在单例类被加载时候，就实例化一个对象交给自己的引用
-
+```
 /\*\*
 
  \* @author 老肥猪
@@ -101,17 +102,17 @@ public class HungrySingleton {
     }
 
 }
-
+```
 1. 枚举实现单例，利用枚举的特性实现单例又可以保证代码的优雅，又可以实现线程安全，但是这样创建却少了懒加载这一功能
-
+```
 public enum EnumSingleton {
 
     INSTANCE
 
 }
-
+```
 1. 静态内部类单例实现：利用jvm的特性，内部类一开始不会被实例化，直到有某个静态成员被调用时才会被实例化。这解决了饿汉模式下的快加载，也解决了懒汉模式下的线程安全问题（建议使用该种方式）
-
+```
 /\*\*
 
  \* @author 老肥猪
@@ -139,9 +140,9 @@ public class InnerClassSingleton {
     }
 
 }
-
+```
 1. 内部枚举实现单例：看起来不优雅。但却也做到了懒加载和线程安全的作用
-
+```
 /\*\*
 
  \* @author 老肥猪
@@ -181,7 +182,7 @@ public class InnerEnumSingleton {
     }
 
 }
-
+```
 场景：
 
 1. 需要平凡实例化然后销毁的对象。
@@ -206,7 +207,7 @@ public class InnerEnumSingleton {
 代码：
 
 ### 汽车接口 ###
-
+```
 /\*\*
 
  \* @author 老肥猪
@@ -220,9 +221,9 @@ public interface ICar {
     void getCar();
 
 }
-
+```
 ### 汽车类别 ###
-
+```
 /\*\*
 
  \* @author 老肥猪
@@ -238,9 +239,9 @@ public enum CarType {
     BMW//寶馬
 
 }
-
+```
 ### 宝马汽车实现类 ###
-
+```
 /\*\*
 
  \* @author 老肥猪
@@ -248,7 +249,7 @@ public enum CarType {
  \* @since 2019/3/4
 
  \*/
-
+```
 public class BMWCar implements ICar {
 
     @Override
@@ -262,7 +263,7 @@ public class BMWCar implements ICar {
 }
 
 ### 吉普车实现类 ###
-
+```
 /\*\*
 
  \* @author 老肥猪
@@ -282,9 +283,9 @@ public class JeepCar implements ICar{
     }
 
 }
-
+```
 ### 工厂 ###
-
+```
 /\*\*
 
  \* @author 老肥猪
@@ -310,7 +311,8 @@ public class Factory {
     }
 
 }
-
+```
+```
 /\*\*
 
  \* 简单工厂测试
@@ -328,7 +330,7 @@ public void simagleFactoryTest() {
     factory.getCarByType(CarType.JEEP).getCar();
 
 }
-
+```
 1. 抽象工厂模式
 
 当有多个抽象角色时使用的一种工厂模式。抽象工厂模式可以向客户端提供一个接口，使客户端在不必指定产品的具体的情况下，创建多个产品对象。它有多个抽象产品类，每个抽象产品类可以派生出多个具体产品类，一个抽象工厂类，可以派生出多个具体工厂类，每个具体工厂类可以创建多个具体产品类的实例。
@@ -358,7 +360,7 @@ public void simagleFactoryTest() {
 代码实现：
 
 ### 事件类 ###
-
+```
 /\*\*
 
  \* @author 老肥猪
@@ -386,9 +388,9 @@ public class Event {
     }
 
 }
-
+```
 ### 邮件类，实现Cloneable ###
-
+```
 /\*\*
 
  \* @author 老肥猪
@@ -464,7 +466,8 @@ public class Mail implements Cloneable {
     }
 
 }
-
+```
+```
 @Test
 
 public void prototypeTest() {
@@ -486,7 +489,7 @@ public void prototypeTest() {
     }
 
 }
-
+```
 好处：
 
 1. 使用原型模式比new一个对象更有效率，因为他是直接去操作内存中的二进制流，来完成的。
@@ -515,7 +518,7 @@ public void prototypeTest() {
 代码实现：
 
 ### 每个设备都具有的特性 ###
-
+```
 /\*\*
 
  \* @author 老肥猪
@@ -541,7 +544,8 @@ public class Device {
     }
 
 }
-
+```
+```
 ### 手机类 ###
 
 /\*\*
@@ -571,7 +575,8 @@ public class Mobile extends Device {
     }
 
 }
-
+```
+```
 ### 电脑 ###
 
 /\*\*
@@ -601,7 +606,8 @@ public class Computer extends Device {
     }
 
 }
-
+```
+```
 ### 建造者接口 ###
 
 /\*\*
@@ -641,7 +647,8 @@ public interface DeviceBuilder\&lt;T\&gt; {
     T doProduct();
 
 }
-
+```
+```
 ### 电脑建造者 ###
 
 /\*\*
@@ -685,7 +692,8 @@ public class ComputerBuilder implements DeviceBuilder\&lt;Computer\&gt; {
     }
 
 }
-
+```
+```
 ### 手机建造者 ###
 
 /\*\*
@@ -725,7 +733,8 @@ public class MobileBuilder implements DeviceBuilder\&lt;Mobile\&gt; {
     }
 
 }
-
+```
+```
 ### 指挥者(指挥建造者去建造) ###
 
 /\*\*
@@ -765,7 +774,7 @@ public class Director {
     }
 
 }
-
+```
 优点：
 
 1. 建造者相对独立，易扩展
@@ -796,7 +805,7 @@ public class Director {
   1.类适配器
 
 ### 源角色 ###
-
+```
   /\*\*
 
  \* @author 老肥猪
@@ -814,7 +823,8 @@ public class Adaptee {
     }
 
 }
-
+```
+```
 ### 需求 ###
 
 /\*\*
@@ -830,7 +840,8 @@ public interface Target {
     void request();
 
 }
-
+```
+```
 ### 适配器 ###
 
 /\*\*
@@ -852,7 +863,8 @@ public class Adapter1 extends Adaptee implements Target {
     }
 
 }
-
+```
+```
 ### 类适配器测试 ###
 
 /\*\*
@@ -870,7 +882,8 @@ public void classAdapter() {
     target.request();
 
 }
-
+```
+```
 ### 对象适配器 ###
 
 /\*\*
@@ -900,7 +913,8 @@ public class Adapter2 implements Target{
     }
 
 }
-
+```
+```
 ### 对象适配器测试 ###
 
 /\*\*
@@ -924,7 +938,7 @@ public void objectAdapter() {
     target.request();
 
 }
-
+```
 优点：
 
 1. 系统希望需要使用现有类，而此类不满足需求，可以使用适配器模式做更好的复用。
@@ -956,8 +970,8 @@ public void objectAdapter() {
 具体装饰角色（ManagerA、ManagerB）：负责给构件对象&quot;贴上&quot;附加的责任。
 
  代码示例：
-
  ### 人物类（Manager） ###
+```
 
  /\*\*
 
@@ -972,8 +986,9 @@ public interface People {
     void eat();
 
 }
-
+```
 ### 老人（具体装饰角色） ###
+```
 
 /\*\*
 
@@ -1000,8 +1015,10 @@ public class OldPeople implements People {
     }
 
 }
+```
 
 ### 新人（具体装饰角色） ###
+```
 
 /\*\*
 
@@ -1034,8 +1051,10 @@ public class NewPeople implements People {
     }
 
 }
+```
 
 ### 装饰者模式测试 ###
+```
 
 /\*\*
 
@@ -1070,6 +1089,7 @@ public void decorator() {
     newPeople.eat();
 
 }
+```
 
  优点：
 
@@ -1103,6 +1123,7 @@ public void decorator() {
 1. 静态代理：
 
 ### 抽象角色 ###
+```
 
 /\*\*
 
@@ -1117,8 +1138,10 @@ public interface UserService {
     void queryUserList();
 
 }
+```
 
 ### 真实角色 ###
+```
 
 /\*\*
 
@@ -1139,8 +1162,10 @@ public class UserServiceImpl implements UserService{
     }
 
 }
+```
 
 ### 代理角色 ###
+```
 
 /\*\*
 
@@ -1171,8 +1196,10 @@ public class UserPoxyService implements UserService {
     }
 
 }
+```
 
 ### 静态代理测试 ###
+```
 
 /\*\*
 
@@ -1191,10 +1218,12 @@ public void staticProxy() {
     userPoxyService.queryUserList();
 
 }
+```
 
 1. 动态代理：
 
 ### 代理的处理者 ###
+```
 
 /\*\*
 
@@ -1233,8 +1262,10 @@ public class UserHandler implements InvocationHandler {
     }
 
 }
+```
 
 ### 动态代理测试 ###
+```
 
 @Test
 
@@ -1255,6 +1286,7 @@ public void dynamicProxy() {
     userService.queryUserList();
 
 }
+```
 
  好处： 业务类只需要关注业务逻辑本身，保证了业务类的重用性。这是代理的共有优点。 能够协调调用者和被调用者，在一定程度上降低了系统的耦合度。
 
@@ -1267,6 +1299,7 @@ public void dynamicProxy() {
 代码示例：
 
  ### 子系统1 ###
+```
 
  /\*\*
 
@@ -1285,8 +1318,10 @@ public class SubSystem1 {
     }
 
 }
+```
 
 ### 子系统2 ###
+```
 
  /\*\*
 
@@ -1305,8 +1340,10 @@ public class SubSystem2 {
     }
 
 }
+```
 
 ### 子系统3 ###
+```
 
  /\*\*
 
@@ -1325,8 +1362,10 @@ public class SubSystem3 {
     }
 
 }
+```
 
 ### 父系统 ###
+```
 
 /\*\*
 
@@ -1349,8 +1388,10 @@ public class BigSystem {
     }
 
 }
+```
 
 ### 测试 ###
+```
 
 /\*\*
 
@@ -1367,6 +1408,7 @@ public void facadeTest() {
     bigSystem.menthod();
 
 }
+```
 
  优点：实现了子系统与客户端之间的松耦合关系。客户端屏蔽了子系统组件，减少了客户端所需处理的对象数目，并使得子系统使用起来更加容易。
 
@@ -1383,6 +1425,7 @@ public void facadeTest() {
 代码示例：
 
  ### 操作接口 ###
+```
 
  /\*\*
 
@@ -1397,8 +1440,10 @@ public interface Implementor {
     void operationImpl();
 
 }
+```
 
  ### 抽象服务类 ###
+```
 
  /\*\*
 
@@ -1439,8 +1484,10 @@ public abstract class AbstractionService {
     }
 
 }
+```
 
 ### 实现独立业务 ###
+```
 
 /\*\*
 
@@ -1467,8 +1514,10 @@ public class ServiceImpl1 implements Implementor {
     }
 
 }
+```
 
 ### 实现独立业务 ###
+```
 
 /\*\*
 
@@ -1495,9 +1544,10 @@ public class ServiceImpl2 implements Implementor {
     }
 
 }
+```
 
  ### 实现其他业务公共业务 ###
-
+```
  /\*\*
 
  \* @author 老肥猪
@@ -1523,9 +1573,9 @@ public class Service extends AbstractionService {
     }
 
 }
-
+```
 ### 测试 ###
-
+```
 /\*\*
 
  \* 桥接模式测试
@@ -1545,7 +1595,7 @@ public void bridgeTest() {
     service.otherOperation();
 
 }
-
+```
  优点：
 
 1. 将固定业务和非固定业务做一次抽象处理，减少了系统复杂程度，也增加了复用性
@@ -1563,7 +1613,7 @@ public void bridgeTest() {
 代码实例：
 
  ### 文件和文件夹公共类 ###
-
+```
  /\*\*
 
  \* @author 老肥猪
@@ -1591,9 +1641,9 @@ public abstract class FolderComponent {
     public abstract void display();
 
 }
-
+```
 ### 文件 ###
-
+```
 /\*\*
 
  \* @author 老肥猪
@@ -1631,9 +1681,9 @@ public class FileLeaf extends FolderComponent {
     }
 
 }
-
+```
 ### 文件夹 ###
-
+```
 /\*\*
 
  \* @author 老肥猪
@@ -1685,11 +1735,10 @@ public class FolderComposite extends FolderComponent {
     }
 
 }
-
+```
 ### 测试方法 ###
-
+```
 @Test
-
 public void componentTest() {
 
     FolderComponent leaf = new FileLeaf(&quot;8PM.mp3&quot;);
@@ -1705,11 +1754,11 @@ public void componentTest() {
     folder.display();
 
 }
-
+```
  使用场景：
 
-1. 1．表现对象的部分-整体层次结构
-2. 2．希望用户忽略组合对象与单个对象的不同，用户将统一地使用组合结构中的所有对象。（摘抄）
+1．表现对象的部分-整体层次结构
+2．希望用户忽略组合对象与单个对象的不同，用户将统一地使用组合结构中的所有对象。（摘抄）
 
 # 十一．策略模式
 
@@ -1726,7 +1775,7 @@ public void componentTest() {
 代码实例：
 
  ### 抽象策略 ###
-
+```
  /\*\*
 
  \* @author 老肥猪
@@ -1740,9 +1789,9 @@ public interface IStrategy {
     void doSomething();
 
 }
-
+```
 ### 具体策略1 ###
-
+```
 /\*\*
 
  \* @author 老肥猪
@@ -1762,9 +1811,9 @@ public class ConcreteStrategy1 implements IStrategy {
     }
 
 }
-
+```
 ### 具体策略2 ###
-
+```
 /\*\*
 
  \* @author 老肥猪
@@ -1784,9 +1833,9 @@ public class ConcreteStrategy1 implements IStrategy {
     }
 
 }
-
+```
 ### 封装类（提供处理方法） ###
-
+```
 /\*\*
 
  \* @author 老肥猪
@@ -1812,9 +1861,9 @@ class Context {
     }
 
 }
-
+```
 ### 测试 ###
-
+```
 @Test
 
 public void strategyTest() {
@@ -1830,7 +1879,7 @@ public void strategyTest() {
     TreeSet\&lt;String\&gt; treeSet=new TreeSet\&lt;\&gt;();
 
 }
-
+```
 # 十二．模板方法模式
 
 简介：定义一个操作中算法的框架，而将一些步骤延迟到子类中，使得子类可以不改变算法的结构即可重定义该算法中的某些特定步骤。
@@ -1838,7 +1887,7 @@ public void strategyTest() {
 代码实例：
 
 ### 抽象类 ###
-
+```
 /\*\*
 
  \* @author 老肥猪
@@ -1868,9 +1917,9 @@ public abstract class AbstractSort {
     }
 
 }
-
+```
 ### 具体实现类 ###
-
+```
 /\*\*
 
  \* @author 老肥猪
@@ -1948,9 +1997,9 @@ public class ConcreteSort extends AbstractSort {
     }
 
 }
-
+```
 ### 测试 ###
-
+```
 @Test
 
 public void templateTest() {
@@ -1962,7 +2011,7 @@ public void templateTest() {
     sort.printSortArrary(arrs);
 
 }
-
+```
 应用场景：假如安排职员a做出一个数组排序的方法并打印，但是职员a并不会排序算法，刚好职员b说他会，这是职员a采用这种设计模式，就可以轻松完成自己的业务。一般抽象类的实现类由有经验的人实现，也是最重要的方法。
 
 # 十三．观察者模式
@@ -1980,7 +2029,7 @@ public void templateTest() {
  被观察者实现类：可以编写自己的一些逻辑
 
 代码实例：
-
+```
  ### 抽象类观察者 ###
 
  /\*\*
@@ -1996,9 +2045,9 @@ public interface Observer {
     void update();
 
 }
-
+```
 ### 具体观察者1 ###
-
+```
 /\*\*
 
  \* @author 老肥猪
@@ -2018,9 +2067,9 @@ public class ObserverImpl1 implements Observer {
     }
 
 }
-
+```
 ### 具体观察者2 ###
-
+```
 /\*\*
 
  \* @author 老肥猪
@@ -2040,9 +2089,9 @@ public class ObserverImpl2 implements Observer {
     }
 
 }
-
+```
 ### 抽象类被观察者 ###
-
+```
 /\*\*
 
  \* @author 老肥猪
@@ -2082,9 +2131,9 @@ public abstract class AbstractSubject {
     public abstract void doSomething();
 
 }
-
+```
 ### 观察者具体实现类 ###
-
+```
 /\*\*
 
  \* @author 老肥猪
@@ -2112,9 +2161,9 @@ public class ConcreteSubject extends AbstractSubject {
     }
 
 }
-
+```
 ### 测试方法 ###
-
+```
 @Test
 
 public void observerTest() {
@@ -2130,7 +2179,7 @@ public void observerTest() {
     subject.doSomething();
 
 }
-
+```
 应用场景：假如一个订单的产生，库存数量需要改变，也需要给商家发送信息，可以使用观察者模式设计，将库存和商家发送信息设置成观察者，由于订单的产生，观察者通过被观察者，触发了自己的方法（这种模式类似发布订阅）
 
 # 十四．迭代器模式
@@ -2140,7 +2189,7 @@ public void observerTest() {
 代码实现：
 
  ### 迭代器模型 ###
-
+```
  /\*\*
 
  \* @author 老肥猪
@@ -2156,9 +2205,9 @@ public interface Iterator\&lt;T\&gt; {
     T next();
 
 }
-
+```
 ### 迭代器实现类 ###
-
+```
 /\*\*
 
  \* @author 老肥猪
@@ -2210,9 +2259,9 @@ public class ConcreteIterator\&lt;T\&gt; implements Iterator\&lt;T\&gt; {
     }
 
 }
-
+```
 ### 集合 ###
-
+```
 /\*\*
 
  \* @author 老肥猪
@@ -2230,9 +2279,9 @@ public interface Aggregate\&lt;T\&gt; {
     Iterator\&lt;T\&gt; iterator();
 
 }
-
+```
 ### 集合实现类 ###
-
+```
 /\*\*
 
  \* @author 老肥猪
@@ -2270,9 +2319,9 @@ public class ConcreteAggregate\&lt;T\&gt; implements Aggregate\&lt;T\&gt; {
     }
 
 }
-
+```
 ### 测试 ###
-
+```
 /\*\*
 
  \* 迭代模式测试
@@ -2302,7 +2351,7 @@ public void lteratorTest() {
     }
 
 }
-
+```
 简单的实现迭代器
 
 # 十五．解释器模式
@@ -2320,7 +2369,7 @@ public void lteratorTest() {
 代码实现：
 
 ### 解释器抽象类 ###
-
+```
  /\*\*
 
  \* @author 老肥猪
@@ -2334,9 +2383,9 @@ public interface INode {
     int interpret();
 
 }
-
+```
 ### 终结表达式抽象类 ###
-
+```
 /\*\*
 
  \* @author 老肥猪
@@ -2362,9 +2411,9 @@ public abstract class SymbolNode implements INode {
     }
 
 }
-
+```
 ### 终结表达式实现类（求余数） ###
-
+```
 /\*\*
 
  \* @author 老肥猪
@@ -2390,9 +2439,9 @@ public class ModNode extends SymbolNode {
     }
 
 }
-
+```
 ### 终结表达式实现类（除法） ###
-
+```
 /\*\*
 
  \* @author 老肥猪
@@ -2418,9 +2467,9 @@ public class DivNode extends SymbolNode {
     }
 
 }
-
+```
 ### 终结表达式实现类（乘法） ###
-
+```
 /\*\*
 
  \* @author 老肥猪
@@ -2446,9 +2495,9 @@ public class MulNode extends SymbolNode {
     }
 
 }
-
+```
 ### 非终结表达式 ###
-
+```
 /\*\*
 
  \* @author 老肥猪
@@ -2478,9 +2527,9 @@ public class NumberNode implements INode {
     }
 
 }
-
+```
 ### 处理终结表达式和非终结表达式的关系 ###
-
+```
 /\*\*
 
  \* @author 老肥猪
@@ -2554,9 +2603,9 @@ public class Calculator {
     }
 
 }
-
+```
 ### 测试类 ###
-
+```
 /\*\*
 
  \* 解释器模式测试
@@ -2576,7 +2625,7 @@ public void InterpreterTest() {
     System.out.println(result);
 
 }
-
+```
   应用场景：
 
 1. 计算器的公式解析
@@ -2591,7 +2640,7 @@ public void InterpreterTest() {
 代码实现：
 
  ### 抽象访问者 ###
-
+```
  /\*\*
 
  \* @author 老肥猪
@@ -2607,9 +2656,9 @@ public interface IVisitor {
     void visit(ConcreteElement2 element2);
 
 }
-
+```
 ### 抽象元素 ###
-
+```
  /\*\*
 
  \* @author 老肥猪
@@ -2625,9 +2674,9 @@ public abstract class Element {
     public abstract void doSomething();
 
 }
-
+```
 ### 元素1的实现类 ###
-
+```
 /\*\*
 
  \* @author 老肥猪
@@ -2655,9 +2704,9 @@ public class ConcreteElement1 extends Element {
     }
 
 }
-
+```
 ### 元素2的实现类 ###
-
+```
 /\*\*
 
  \* @author 老肥猪
@@ -2685,9 +2734,9 @@ public class ConcreteElement2 extends Element {
     }
 
 }
-
+```
 ### 访问者实现类 ###
-
+```
 /\*\*
 
  \* @author 老肥猪
@@ -2715,9 +2764,9 @@ public class Visitor implements IVisitor {
     }
 
 }
-
+```
 ### 结构对象 ###
-
+```
 /\*\*
 
  \* @author 老肥猪
@@ -2755,9 +2804,9 @@ public class ObjectStruture {
     }
 
 }
-
+```
  ### 测试 ###
-
+```
 @Test
 
 public void visitorTest() {
@@ -2775,7 +2824,7 @@ public void visitorTest() {
     }
 
 }
-
+```
 应用场景：
 
 1. 假如一个对象中存在着一些与本对象不相干（或者关系较弱）的操作，为了避免这些操作污染这个对象，则可以使用访问者模式来把这些操作封装到访问者中去。
@@ -2798,7 +2847,7 @@ Receiver类：接收者，负责接收命令并且执行命令。
 代码实现：
 
  ### 命令接口 ###
-
+```
  /\*\*
 
  \* @author 老肥猪
@@ -2818,9 +2867,9 @@ public interface Command {
     void execute();
 
 }
-
+```
 ### 命令实现类 ###
-
+```
 /\*\*
 
  \* @author 老肥猪
@@ -2854,9 +2903,9 @@ public class ConcreteCommand implements Command {
     }
 
 }
-
+```
 ### 命令调用者 ###
-
+```
 /\*\*
 
  \* @author 老肥猪
@@ -2882,9 +2931,9 @@ public class Invoker {
     }
 
 }
-
+```
 ### 命令执行者 ###
-
+```
 /\*\*
 
  \* @author 老肥猪
@@ -2902,9 +2951,9 @@ public class Receiver {
     }
 
 }
-
+```
 ### 测试 ###
-
+```
 /\*\*
 
  \* 测试命令模式
@@ -2926,7 +2975,7 @@ public void testCommand() {
     invoker.action();
 
 }
-
+```
 应用场景：
 
 对于大多数请求和响应模式的功能，比较适合使用命令模式，正如命令模式定义说的那样，命令模式对实现记录日志、撤销操作等功能比较方便。
@@ -2946,7 +2995,7 @@ public void testCommand() {
 代码实现：
 
 ### 备忘录类 ###
-
+```
 /\*\*
 
  \* @author 老肥猪
@@ -2978,9 +3027,9 @@ public class Memento {
     }
 
 }
-
+```
 ### 备忘录管理类 ###
-
+```
 /\*\*
 
  \* @author 老肥猪
@@ -3006,9 +3055,9 @@ public class Caretaker {
     }
 
 }
-
+```
 ### 发起人 ###
-
+```
 /\*\*
 
  \* @author 老肥猪
@@ -3046,9 +3095,9 @@ public class Originator {
     }
 
 }
-
+```
 ### 测试 ###
-
+```
 /\*\*
 
  \* 备忘录模式(crtl + z原理)
@@ -3078,7 +3127,7 @@ public void MemoTest() {
     System.out.println(&quot;恢复后状态:&quot;+originator.getState());
 
 }
-
+```
 应用场景：
 
 保存上一个状态，使系统具有恢复性
@@ -3096,7 +3145,7 @@ public void MemoTest() {
 代码实现：
 
 ### 级别 ###
-
+```
 /\*\*
 
  \* @author 老肥猪
@@ -3128,9 +3177,9 @@ public class Level {
     }
 
 }
-
+```
 ### Response ###
-
+```
 /\*\*
 
  \* @author 老肥猪
@@ -3142,9 +3191,9 @@ public class Level {
 public class Response {
 
 }
-
+```
 ### request级别 ###
-
+```
 /\*\*
 
  \* @author 老肥猪
@@ -3170,9 +3219,9 @@ public class Request {
     }
 
 }
-
+```
 ### 抽象处理类 ###
-
+```
 /\*\*
 
  \* @author 老肥猪
@@ -3222,9 +3271,9 @@ public abstract class Handler {
     public abstract Response response(Request request);
 
 }
-
+```
 ### 具体处理实现类 ###
-
+```
 /\*\*
 
  \* @author 老肥猪
@@ -3250,9 +3299,9 @@ public class ConcreteHandler1 extends Handler {
     }
 
 }
-
+```
 ### 具体处理实现类2 ###
-
+```
 /\*\*
 
  \* @author 老肥猪
@@ -3278,9 +3327,9 @@ public class ConcreteHandler2 extends Handler {
     }
 
 }
-
+```
 ### 具体处理实现类3 ###
-
+```
 /\*\*
 
  \* @author 老肥猪
@@ -3306,9 +3355,9 @@ public class ConcreteHandler3 extends Handler {
     }
 
 }
-
+```
 ### 测试 ###
-
+```
 /\*\*
 
  \* 责任链模式测试方法
@@ -3332,7 +3381,7 @@ public void chainTest() {
     Response response = handler1.handleRequest(new Request(new Level(4)));
 
 }
-
+```
 应用场景：灵活版的ifelse
 
 # 二十．中介者模式
@@ -3348,7 +3397,7 @@ public void chainTest() {
 代码实现：
 
  ### 同事的抽象类 ###
-
+```
  /\*\*
 
  \* @author 老肥猪
@@ -3376,9 +3425,9 @@ public abstract class AbstractColleague {
     public abstract void setNumber(int number, AbstractMediator am);
 
 }
-
+```
 ### 同事a ###
-
+```
 /\*\*
 
  \* @author 老肥猪
@@ -3398,9 +3447,9 @@ public class ConcreteColleagueA extends AbstractColleague {
     }
 
 }
-
+```
 ### 同事b ###
-
+```
 /\*\*
 
  \* @author 老肥猪
@@ -3420,9 +3469,9 @@ public class ConcreteColleagueB extends AbstractColleague {
     }
 
 }
-
+```
 ### 抽象中介者 ###
-
+```
 /\*\*
 
  \* @author 老肥猪
@@ -3450,9 +3499,9 @@ public abstract class AbstractMediator {
     public abstract void BaffectA();
 
 }
-
+```
 ### 中介者实现类 ###
-
+```
 /\*\*
 
  \* @author 老肥猪
@@ -3486,9 +3535,9 @@ public class ConcreteMediator extends AbstractMediator {
     }
 
 }
-
+```
 ### 测试方法 ###
-
+```
 /\*\*
 
  \* 中介者模式（当互相影响的时候，可以使用）
@@ -3528,8 +3577,8 @@ public void IntermediaryTest() {
     System.out.println(&quot;collA的number值为B的0.1倍：&quot;+collA.getNumber());
 
 }
-
-应用场景：
+```
+应用场景：``````****``````
 
 1. 使用中介者模式可以将对象间一对多的关联转变为一对一的关联，使对象间的关系易于理解和维护。
 2. 易处理对象间的相互影响
@@ -3559,8 +3608,8 @@ public void IntermediaryTest() {
 代码实现：
 
 ### 状态类 ###
-
-    /\*\*
+```
+ /\*\*
 
  \* @author 老肥猪
 
@@ -3573,9 +3622,9 @@ public interface State {
     void behavior();
 
 }
-
+```
 ### 状态B  ###
-
+```
 /\*\*
 
  \* @author 老肥猪
@@ -3595,9 +3644,9 @@ public class ConcreteStateB implements State {
     }
 
 }
-
+```
 ### 状态A  ###
-
+```
 /\*\*
 
  \* @author 老肥猪
@@ -3617,9 +3666,9 @@ public class ConcreteStateA implements State {
     }
 
 }
-
+```
 ### 环境类（随环境的变化而发送状态的改变） ###
-
+```
 /\*\*
 
  \* @author 老肥猪
@@ -3661,8 +3710,9 @@ public class Context {
     }
 
 }
+```
 ### 测试方法 ###
-
+```
 /\*\*
 
  \* 状态模式测试
@@ -3694,7 +3744,7 @@ public void stateTest() {
     context.handle();
 
 }
-
+```
 应用场景：
 
 用于解决系统中复杂对象的多种状态转换以及不同状态下行为的封装问题。简单说就是处理对象的多种状态及其相互转换。
